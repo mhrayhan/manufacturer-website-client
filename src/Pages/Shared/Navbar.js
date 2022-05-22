@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/logo/logo.webp'
 
 const Navbar = () => {
   const navMenu = <>
@@ -7,6 +8,10 @@ const Navbar = () => {
     <li><Link to='/about'>About</Link></li>
     <li><Link to='/'>Reviews</Link></li>
     <li><Link to='/'>Contact</Link></li>
+  </>
+  const navSubMenu = <>
+    <li><Link to='/'>Sign In</Link></li>
+    <li><Link to='/'>Sigh Out</Link></li>
   </>
   return (
     <div class="navbar w-[90%] mx-auto bg-base-100">
@@ -23,13 +28,12 @@ const Navbar = () => {
                 <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
               </Link>
               <ul class="p-2">
-                <li><Link to='/'>Reviews</Link></li>
-                <li><Link to='/'>Contact</Link></li>
+                {navSubMenu}
               </ul>
             </li>
           </ul>
         </div>
-        <Link to='/' class="btn btn-ghost normal-case text-xl">daisyUI</Link>
+        <Link to='/' class="btn btn-ghost normal-case text-xl w-48"><img src={logo} alt="" /></Link>
       </div>
       <div class="navbar-end hidden lg:flex">
         <ul class="menu menu-horizontal p-0">
@@ -40,8 +44,7 @@ const Navbar = () => {
               <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
             </Link>
             <ul class="p-2">
-              <li><Link to='/'>Reviews</Link></li>
-              <li><Link to='/'>Contact</Link></li>
+              {navSubMenu}
             </ul>
           </li>
         </ul>
