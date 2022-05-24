@@ -17,10 +17,11 @@ module.exports = {
     themes: [
       {
         doctortheme: {
-          primary: "#0FCFEC",
+          primary: "#FFD580",
           secondary: "rgb(251 191 36)",
           accent: "#3A4256",
           neutral: "#3d4451",
+          yellow: "#FFD580",
           "base-100": "#ffffff",
         },
       },
