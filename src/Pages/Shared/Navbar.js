@@ -17,9 +17,7 @@ const Navbar = () => {
 
   const navMenu = <>
     <li><Link to='/'>Home</Link></li>
-    <li><Link to='/about'>About</Link></li>
-    <li><Link to='/'>Reviews</Link></li>
-    <li><Link to='/'>Contact</Link></li>
+    <li><Link to='/shop'>Shop</Link></li>
     <li><Link to='/dashboard'>Dashboard</Link></li>
     {user && <li><span className='capitalize'>{user?.displayName}</span></li>}
     <li>{user ? <button onClick={logout} className='btn btn-ghost'>Sign Out</button> : <Link to='/login'>Log in</Link>}</li>

@@ -46,15 +46,15 @@ const Review = () => {
         <label className="label">
           <span className="label-text">Name</span>
         </label>
-        <input type="text" readOnly name='name' value={user.displayName} class="input  input-sm w-full " />
+        <input type="text" readOnly name='name' value={user.displayName} className="input  input-sm w-full " />
         <label className="label">
           <span className="label-text">Ratings</span>
         </label>
-        <input type="text" name='ratings' placeholder="Ratings within 1 to 5" class="input input-sm w-full " />
+        <input type="text" name='ratings' placeholder="Ratings within 1 to 5" className="input input-sm w-full " />
         <label className="label">
           <span className="label-text">Please type your opinion.</span>
         </label>
-        <textarea name='review' class="textarea w-full " placeholder="Type Your Opion"></textarea>
+        <textarea name='review' className="textarea w-full " placeholder="Type Your Opion"></textarea>
         <input className='btn w-28 max-w-xs my-4 btn-secondary text-white' type="submit" value='Submit' />
       </form>
     </div>

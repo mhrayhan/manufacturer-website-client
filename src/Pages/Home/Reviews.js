@@ -14,10 +14,10 @@ const Reviews = () => {
       <div className='grid lg:grid-cols-3 gap-5 w-5/6 mx-auto '>
         {
           reviews.map(review =>
-            <div class="card w-96 bg-base-100 shadow-md">
-              <div class="py-8 px-4 text-left">
-                <h2 class="text-l">{review.name}</h2>
-                <p class="">Ratings: <span className='text-orange-500'>{review.ratings} star</span>  </p>
+            <div className="card w-96 bg-base-100 shadow-md">
+              <div className="py-8 px-4 text-left">
+                <h2 className="text-l">{review.name}</h2>
+                <p className="">Ratings: <span className='text-orange-500'>{review.ratings} star</span>  </p>
                 <p></p>
                 <p><b className='text-green-500'>Comments:- </b> {review.review}</p>
               </div>

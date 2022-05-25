@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './Pages/About/About';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import MyProfile from './Pages/Dashboard/MyProfile';
 import Order from './Pages/Dashboard/Order';
 import Review from './Pages/Dashboard/Review';
 import Home from './Pages/Home/Home';
@@ -10,6 +11,7 @@ import Login from './Pages/LogIn/Login';
 import Register from './Pages/LogIn/Register';
 import NotFound from './Pages/NotFound/NotFound';
 import Navbar from './Pages/Shared/Navbar';
+import ShopTools from './Pages/Shop/ShopTools';
 
 function App() {
   return (
@@ -18,10 +20,12 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/about' element={<About></About>}></Route>
+        <Route path='/shop' element={<ShopTools></ShopTools>}></Route>
         <Route path='/purchase/:id' element={<PurchsePage></PurchsePage>}></Route>
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>
           <Route path='review' element={<Review></Review>}></Route>
           <Route path='order' element={<Order></Order>}></Route>
+          <Route path='profile' element={<MyProfile></MyProfile>}></Route>
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
