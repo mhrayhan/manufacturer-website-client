@@ -1,31 +1,23 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import Swal from 'sweetalert2';
+import auth from '../../firebase.init';
 
 const Review = () => {
+
+  const [user] = useAuthState(auth);
+
   const handleSubmit = event => {
     event.preventDefault();
     const ratings = event.target.ratings.value;
     const review = event.target.review.value;
     console.log(ratings, review);
     const reviews = {
+      name: user.displayName,
       ratings: ratings,
       review: review,
     }
 
-    // if (quantity < items.minorder) {
-    //   return Swal.fire(
-    //     'Error',
-    //     `Please Order more than ${items.minorder}`,
-    //     'error'
-    //   )
-    // }
-    // if (quantity > items.available) {
-    //   return Swal.fire(
-    //     'Error',
-    //     `Please Order less than ${items.available}`,
-    //     'error'
-    //   )
-    // }
 
     const url = 'http://localhost:5000/review/'
     fetch(url, {
@@ -50,16 +42,20 @@ const Review = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className='border p-2 rounded mt-16'>
+      <form onSubmit={handleSubmit} className='border bg-green-300 p-2 rounded mt-16'>
+        <label className="label">
+          <span className="label-text">Name</span>
+        </label>
+        <input type="text" readOnly name='name' value={user.displayName} class="input  input-sm w-full " />
         <label className="label">
           <span className="label-text">Ratings</span>
         </label>
-        <input type="text" name='ratings' placeholder="Ratings within 1 to 5" class="input input-bordered input-sm w-full " />
+        <input type="text" name='ratings' placeholder="Ratings within 1 to 5" class="input input-sm w-full " />
         <label className="label">
           <span className="label-text">Please type your opinion.</span>
         </label>
-        <textarea name='review' class="textarea w-full textarea-bordered" placeholder="Type Your Opion"></textarea>
-        <input className='btn w-28 max-w-xs my-4 btn-outline btn-success' type="submit" value='Submit' />
+        <textarea name='review' class="textarea w-full " placeholder="Type Your Opion"></textarea>
+        <input className='btn w-28 max-w-xs my-4 btn-secondary text-white' type="submit" value='Submit' />
       </form>
     </div>
   );
