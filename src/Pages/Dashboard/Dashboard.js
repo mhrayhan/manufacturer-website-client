@@ -7,15 +7,15 @@ const Dashboard = () => {
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center ">
-          <h2 className='text-5xl text-success'>Dashboard</h2>
+          <h2 className='text-3xl shadow-sm font-bold py-[5px] px-20 rounded-full text-success'>Dashboard</h2>
           <Outlet></Outlet>
         </div>
         <div className="drawer-side">
           <label for="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 bg-gray-100 overflow-y-auto w-80 text-base-content">
-            <li><Link to='/dashboard/review'>Add a Review</Link></li>
-            <li><Link to='/dashboard/order'>My Order</Link></li>
+          <ul style={{borderRadius: '0 30px 0 0'}} className="menu mt-2 p-4 bg-gray-100 overflow-y-auto w-80 text-base-content">
             <li><Link to='/dashboard/profile'>My Profile</Link></li>
+            <li><Link to='/dashboard/order'>My Order</Link></li>
+            <li><Link to='/dashboard/review'>Add a Review</Link></li>
           </ul>
 
         </div>

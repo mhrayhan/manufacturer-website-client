@@ -9,12 +9,12 @@ const Reviews = () => {
       .then(data => setReviews(data))
   }, [])
   return (
-    <div>
-      <h2 className=' mt-20 mb-8 text-5xl font-bold text-green-500'>Customers Says</h2>
-      <div className='grid lg:grid-cols-3 gap-5 w-5/6 mx-auto '>
+    <div className='bg-gray-100 mt-20 py-8 '>
+      <h2 className='  mb-8 text-4xl font-medium bg-base-100 text-green-500 shadow-sm w-fit mx-auto py-4 px-8 mt- rounded-full' style={{}}><span className='text-secondary'>Customers</span> Says</h2>
+      <div className='grid  lg:grid-cols-3 gap-5 w-5/6 mx-auto '>
         {
           reviews.map(review =>
-            <div className="card w-96 bg-base-100 shadow-md">
+            <div className="card w-full bg-base-100 shadow-sm">
               <div className="py-8 px-4 text-left">
                 <h2 className="text-l">{review.name}</h2>
                 <p className="">Ratings: <span className='text-orange-500'>{review.ratings} star</span>  </p>

@@ -32,8 +32,8 @@ const Review = () => {
         console.log(data);
         if (data.insertedId) {
           Swal.fire(
-            'Order Placed',
-            `Order Placed for`,
+            'Success',
+            `Review Successfully Posted..`,
             'success'
           )
         }
