@@ -15,7 +15,7 @@ module.exports = {
           neutral: "#3d4451",
           yellow: "#FFD580",
           "base-100": "#ffffff",
-        },
+        }
       },
       "cupcake",
     ],

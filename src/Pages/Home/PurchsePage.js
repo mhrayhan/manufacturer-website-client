@@ -11,9 +11,9 @@ const PurchsePage = () => {
 
   const [items, setItems] = useState([]);
 
-  // console.log(user);
+  // console.log(items);
   const { id } = useParams();
-  console.log(items);
+  // console.log(items);
   useEffect(() => {
     const url = `http://localhost:5000/product/${id}`
     fetch(url)
@@ -21,13 +21,34 @@ const PurchsePage = () => {
       .then(data => setItems(data))
   }, [id])
 
-  // const { register, handleSubmit } = useForm();
+
   const handleSubmit = event => {
     event.preventDefault();
     const quantity = event.target.quantity.value;
     const phone = event.target.phone.value;
     const address = event.target.address.value;
     console.log(quantity, phone, address);
+
+
+    // const orderQuantity = parseInt(quantity)
+    // const minimumOrder = parseInt(items.minorder)
+    // const availableQty = parseInt(items.available)
+
+    if (quantity >= items.minorder) {
+      return Swal.fire(
+        'Error',
+        `Please Order more than ${items.minorder}`,
+        'error'
+      )
+    }
+    if (quantity <= items.available) {
+      return Swal.fire(
+        'Error',
+        `Please Order less than ${items.available}`,
+        'error'
+      )
+    }
+
     const purchase = {
       toolId: items._id,
       itemName: items.name,
@@ -38,21 +59,6 @@ const PurchsePage = () => {
       userEmail: user.email,
       phone: phone,
       address: address
-    }
-
-    if (quantity < items.minorder) {
-      return Swal.fire(
-        'Error',
-        `Please Order more than ${items.minorder}`,
-        'error'
-      )
-    }
-    if (quantity > items.available) {
-      return Swal.fire(
-        'Error',
-        `Please Order less than ${items.available}`,
-        'error'
-      )
     }
 
     const url = 'http://localhost:5000/purchase/'
@@ -97,11 +103,14 @@ const PurchsePage = () => {
                 <input type="number" readOnly name='price' value={items?.price}
                   className="input input-sm input-info  input-bordered w-full max-w-xs" />
               </div>
-              <div className="form-control w-full max-w-xs">
-                <div className='flex pb-2 '><span className='bg-green-500 text-white font-semi-bold px-2 p-[2px] rounded-md'>Stock: {items.available}</span><span className='bg-orange-600 text-white font-semi-bold px-2  p-[2px] rounded-md'>Minimum Order: {items.minorder}</span></div>
-                <input type="number" name='quantity' placeholder='Order Quantity'
-                  className="input input-sm input-info  input-bordered w-full max-w-xs" />
+
+              <div className='flex pb-2 '><span className='bg-green-500 text-white font-semi-bold px-2 p-[2px] rounded-md'>Stock: {items.available}</span><span className='bg-orange-600 text-white font-semi-bold px-2  p-[2px] rounded-md'>Minimum Order: {items.minorder}</span>
               </div>
+
+              <div className="form-control w-full max-w-xs">
+                <input type="number" name='quantity' placeholder='Order Quantity' className="input input-sm input-info  input-bordered w-full max-w-xs" />
+              </div>
+
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Name</span>

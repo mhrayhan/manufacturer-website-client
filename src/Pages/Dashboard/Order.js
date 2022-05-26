@@ -1,37 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import axios from 'axios';
 import OrderList from './OrderList';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
 
 const Order = () => {
   const [user] = useAuthState(auth);
-  console.log(user);
+  // console.log(user);
+  const navigate = useNavigate();
 
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const getItem = async () => {
-      const email = user?.email;
-      const url = `http://localhost:5000/purchase`;
-      const { data } = await axios.get(url)
-      const matched = data.filter(item => item.userEmail === email)
-      console.log(matched);
-      setItems(matched)
-    }
-    getItem();
+    const email = user?.email;
+    const url = `http://localhost:5000/purchase?userEmail=${email}`;
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+      .then(res => {
+        console.log('res', res);
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem('accessToken');
+          navigate('/')
+        }
+        return res.json()
+      })
+      .then(data => {
+        const matched = data.filter(item => item.userEmail === email)
+        console.log(matched);
+        setItems(matched)
+      })
   }, [user])
-  // useEffect(() => {
-  //   const getMyProducts = async () => {
-  //     const email = user?.email;
-  //     const url = `http://localhost:5000/purchase?email=${email}`
 
-  //     await fetch(url)
-  //       .then(res => res.json())
-  //       .then(data => setItems(data))
-  //   }
-  //   getMyProducts()
-  // }, [user]);
 
   const handleDelete = id => {
     const proceed = window.confirm('Are You Sure?')
@@ -68,7 +73,7 @@ const Order = () => {
           <tbody>
             {
               items.map((item, index) =>
-                <tr>
+                <tr className='hover'>
                   <th>{index + 1}</th>
                   <td>{item.itemName}</td>
                   <td><img src={item.image} width={30} alt="" /></td>

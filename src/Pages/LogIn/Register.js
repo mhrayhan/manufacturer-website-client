@@ -1,9 +1,11 @@
 import React from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import login from '../../assets/images/login2.jpg'
 import auth from '../../firebase.init';
+import google from '../../assets/images/google.png'
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -20,6 +22,9 @@ const Register = () => {
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+  const [token] = useToken(user || gUser);
+
+  const navigate = useNavigate();
   let signinError;
 
   if (loading || gLoading || updating) {
@@ -27,6 +32,10 @@ const Register = () => {
   }
   if (error || gError || updateError) {
     signinError = <p className='text-red-500 text-sm'>{error?.message || gError?.message}</p>
+  }
+
+  if (token) {
+    navigate('/');
   }
 
   const onSubmit = async data => {
@@ -40,10 +49,10 @@ const Register = () => {
         <img className='hidden lg:block' width={700} src={login} alt="" />
       </div>
       <div className=''>
-        <div className='flex h-screen justify-center items-center'>
+        <div className='flex  justify-center items-center shadow-2xl mt-4'>
           <div className="card w-96 mx-auto bg-base-100 ">
             <div className="card-body">
-              <h2 className="text-xl text-center font-bold">Sign Up</h2>
+              <h2 className="bg-pink-400 mb-4 text-white w-fit mx-auto py-[5px] px-8 rounded-full text-xl text-center font-semibold">Sign Up</h2>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control w-full max-w-xs">
                   <label className="label">
@@ -108,11 +117,11 @@ const Register = () => {
                 </div>
 
                 {signinError}
-                <input className='btn w-full max-w-xs my-4 btn-outline btn-info' type="submit" value='Sign Up' />
+                <input className='btn w-full max-w-xs my-4 btn-outline btn-primary' type="submit" value='Sign Up' />
               </form>
               <p><small>Already have an account? <Link className='text-primary' to='/login'>Please Log In</Link></small></p>
               <div className="divider">OR</div>
-              <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-info">Continue with Google</button>
+              <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary"><img className='mr-8' src={google} width={25} alt="" /> Continue with Google</button>
             </div>
           </div>
         </div>

@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import login from '../../assets/images/login2.jpg'
+import google from '../../assets/images/google.png'
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
-  const navigate = useNavigate();
 
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const { register, formState: { errors }, handleSubmit } = useForm();
@@ -17,26 +18,26 @@ const Login = () => {
     error,
   ] = useSignInWithEmailAndPassword(auth);
 
-  if (gUser) {
-    navigate('/')
-  }
+  const [token] = useToken(user || gUser);
+
+
   let signinError;
-  // const navigate = useNavigate();
-  // let location = useLocation();
-  // let from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
-  // useEffect(() => {
-  //   if (token) {
-  //     navigate(from, { replace: true });
-  //   }
-  // }, [token, from, navigate])
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate])
 
-  // if (loading || gLoading) {
-  //   return <button className="btn loading">loading</button>
-  // }
-  // if (error || gError) {
-  //   signinError = <p className='text-red-500 text-sm'>{error?.message || gError?.message}</p>
-  // }
+  if (loading || gLoading) {
+    return <button className="btn loading">loading</button>
+  }
+  if (error || gError) {
+    signinError = <p className='text-red-500 text-sm'>{error?.message || gError?.message}</p>
+  }
   const onSubmit = data => {
 
     signInWithEmailAndPassword(data.email, data.password)
@@ -49,10 +50,10 @@ const Login = () => {
         <img className='hidden lg:block' width={700} src={login} alt="" />
       </div>
       <div className=''>
-        <div className='flex h-screen justify-center items-center'>
+        <div className='flex mt-12 justify-center items-center shadow-2xl'>
           <div className="card w-96 mx-auto bg-base-100 ">
             <div className="card-body">
-              <h2 className="text-xl text-center font-bold">Login</h2>
+              <h2 className="bg-pink-400 mb-8 text-white w-fit mx-auto py-[5px] px-8 rounded-full text-xl text-center font-semibold">Log In</h2>
               <form onSubmit={handleSubmit(onSubmit)}>
 
                 <div className="form-control w-full max-w-xs">
@@ -102,11 +103,11 @@ const Login = () => {
 
 
                 {signinError}
-                <input className='btn w-full max-w-xs my-4 btn-outline btn-info' type="submit" value='Log In' />
+                <input className='btn w-full max-w-xs my-4 btn-outline btn-primary' type="submit" value='Log In' />
               </form>
-              <p><small>New to Doctors Portal? <Link className='text-secondary' to='/register'>Create New Account</Link></small></p>
+              <p><small>New to Tools-Cart? <Link className='text-secondary' to='/register'>Create New Account</Link></small></p>
               <div className="divider">OR</div>
-              <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-info">Continue with Google</button>
+              <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary"><img className='mr-8' src={google} width={25} alt="" /> Continue with Google</button>
             </div>
           </div>
         </div>

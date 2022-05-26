@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Footer from '../Shared/Footer';
 import ShopTools from './ShopTools';
 
 const Shop = () => {
@@ -7,16 +8,21 @@ const Shop = () => {
     const url = 'http://localhost:5000/product';
     fetch(url)
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => SetShopTools(data))
   }, [])
   return (
-    <div className='grid lg:grid-cols-3 gap-5 w-[90%] mx-auto mt-12 lg:mt-32'>
-      {
-        shopTools.map(tool => <ShopTools
-          key={tool._id}
-          tool={tool}
-        ></ShopTools>)
-      }
+    <div>
+      <h2 className='text-3xl py-4 font-serif  font-semibold text-secondary'>ALL PRODUCTS</h2>
+      <div className='grid lg:grid-cols-3 gap-5 w-[90%] mx-auto mt-12 lg:mb-32'>
+        {
+          shopTools.map(tool => <ShopTools
+            key={tool._id}
+            tool={tool}
+          ></ShopTools>)
+        }
+
+      </div>
+      <Footer></Footer>
     </div>
   );
 };
