@@ -7,9 +7,12 @@ import Swal from 'sweetalert2'
 
 const PurchsePage = () => {
   const [user] = useAuthState(auth);
+
+
+  const [items, setItems] = useState([]);
+
   // console.log(user);
   const { id } = useParams();
-  const [items, setItems] = useState([]);
   console.log(items);
   useEffect(() => {
     const url = `http://localhost:5000/product/${id}`
@@ -28,6 +31,7 @@ const PurchsePage = () => {
     const purchase = {
       toolId: items._id,
       itemName: items.name,
+      image: items.image,
       price: items.price,
       order: quantity,
       userName: user.displayName,

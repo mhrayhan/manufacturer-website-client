@@ -42,7 +42,8 @@ const Review = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className='border bg-green-300 p-2 rounded mt-16'>
+      <h2 style={{ borderRadius: '10px 10px 0 0' }} className='text-l font-semibold text-white py-[5px] px-4 bg-blue-500 w-84 mx-auto mt-16'>Please Share Your Experience with US</h2>
+      <form onSubmit={handleSubmit} className='border bg-green-300 p-2  '>
         <label className="label">
           <span className="label-text">Name</span>
         </label>

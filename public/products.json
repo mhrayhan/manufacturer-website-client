@@ -3,48 +3,48 @@
     "name": "Tools",
     "image": "https://m.media-amazon.com/images/I/71SdtTqP7sS._AC_UL480_FMwebp_QL65_.jpg",
     "description": "Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for use in your destination. Please check compatibility before purchasing.",
-    "price": 500,
-    "available": 2500, 
-    "minorder": 100
+    "price": "500",
+    "available": "2500", 
+    "minorder": "100"
   },
   {
     "name": "Tools",
     "image": "https://m.media-amazon.com/images/I/71SdtTqP7sS._AC_UL480_FMwebp_QL65_.jpg",
     "description": "Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for use in your destination. Please check compatibility before purchasing.",
-    "price": 500,
-    "available": 2500, 
-    "minorder": 100
+    "price": "500",
+    "available": "2500", 
+    "minorder": "100"
   },
   {
     "name": "Tools",
     "image": "https://m.media-amazon.com/images/I/71SdtTqP7sS._AC_UL480_FMwebp_QL65_.jpg",
     "description": "Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for use in your destination. Please check compatibility before purchasing.",
-    "price": 500,
-    "available": 2500, 
-    "minorder": 100
+    "price": "500",
+    "available": "2500", 
+    "minorder": "100"
   },
   {
     "name": "Tools",
     "image": "https://m.media-amazon.com/images/I/71SdtTqP7sS._AC_UL480_FMwebp_QL65_.jpg",
     "description": "Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for use in your destination. Please check compatibility before purchasing.",
-    "price": 500,
-    "available": 2500, 
-    "minorder": 100
+    "price": "500",
+    "available": "2500", 
+    "minorder": "100"
   },
   {
     "name": "Tools",
     "image": "https://m.media-amazon.com/images/I/71SdtTqP7sS._AC_UL480_FMwebp_QL65_.jpg",
     "description": "Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for use in your destination. Please check compatibility before purchasing.",
-    "price": 500,
-    "available": 2500, 
-    "minorder": 100
+    "price": "500",
+    "available": "2500", 
+    "minorder": "100"
   },
   {
     "name": "ToolsToolsTools",
     "image": "https://m.media-amazon.com/images/I/71SdtTqP7sS._AC_UL480_FMwebp_QL65_.jpg",
     "description": "Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for use in your destination. Please check compatibility before purchasing.",
-    "price": 500,
-    "available": 2500, 
-    "minorder": 100
+    "price": "500",
+    "available": "2500", 
+    "minorder": "100"
   }
 ]
