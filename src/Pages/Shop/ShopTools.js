@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ShopTools = ({ tool }) => {
-  console.log(tool);
+  // console.log(tool);
   const { _id, name, image, description, price, minorder, available } = tool;
   const navigate = useNavigate();
   const handlePurchse = (id) => {
@@ -11,7 +11,7 @@ const ShopTools = ({ tool }) => {
 
   return (
     <div>
-      <div className="card bg-base-100 shadow-xl ">
+      <div className="card bg-base-100 h-full shadow-xl ">
         <figure className="">
           <img src={image} alt="Shoes" className="rounded-xl p-4 h-[250px]" />
         </figure>

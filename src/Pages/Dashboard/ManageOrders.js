@@ -4,12 +4,12 @@ import auth from '../../firebase.init';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 
-const Order = () => {
+const ManageOrders = () => {
   const [user] = useAuthState(auth);
   // console.log(user);
   const navigate = useNavigate();
 
-  const [items, setItems] = useState([]);
+  const [manageOrders, setmanageOrders] = useState([]);
 
   useEffect(() => {
     const email = user?.email;
@@ -30,11 +30,9 @@ const Order = () => {
         return res.json()
       })
       .then(data => {
-        const matched = data.filter(item => item.userEmail === email)
-        console.log(matched);
-        setItems(matched)
+        setmanageOrders(data)
       })
-  }, [user])
+  })
 
 
   const handleDelete = id => {
@@ -46,15 +44,15 @@ const Order = () => {
       })
         .then(res => res.json())
         .then(data => {
-          const remaining = items.filter(item => item._id !== id);
-          setItems(remaining)
+          const remaining = manageOrders.filter(item => item._id !== id);
+          setmanageOrders(remaining)
         })
     }
   }
 
   return (
     <div>
-      <h2 className='text-l font-semibold text-white my-2 py-[5px] px-4 bg-slate-400 w-fit mx-auto rounded-lg'>My Order</h2>
+      <h2 className='text-l font-semibold text-white my-2 py-[5px] px-4 bg-slate-400 w-fit mx-auto rounded-lg'>Manage All Orders</h2>
       <div class="overflow-x-auto w-screen lg:w-full">
         <table class="table w-full text-center">
           <thead>
@@ -70,7 +68,7 @@ const Order = () => {
           </thead>
           <tbody>
             {
-              items.map((item, index) =>
+              manageOrders.map((item, index) =>
                 <tr className='hover'>
                   <th>{index + 1}</th>
                   <td>{item.itemName}</td>
@@ -88,4 +86,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default ManageOrders;

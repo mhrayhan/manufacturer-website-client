@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    const url = 'http://localhost:5000/review';
+    const url = 'https://pure-falls-34835.herokuapp.com/review';
     fetch(url)
       .then(res => res.json())
       .then(data => setReviews(data))
@@ -16,7 +16,7 @@ const Reviews = () => {
           reviews.map(review =>
             <div className="card w-full bg-base-100 shadow-sm">
               <div className="py-8 px-4 text-left">
-                <h2 className="text-l">{review.name}</h2>
+                <h2 className="">{review.name}</h2>
                 <p className="">Ratings: <span className='text-orange-500'>{review.ratings} star</span>  </p>
                 <p></p>
                 <p><b className='text-green-500'>Comments:- </b> {review.review}</p>

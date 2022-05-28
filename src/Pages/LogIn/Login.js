@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import login from '../../assets/images/login2.jpg'
 import google from '../../assets/images/google.png'
 import useToken from '../../hooks/useToken';
+import Loader from '../Shared/Loader';
 
 const Login = () => {
 
@@ -33,7 +34,7 @@ const Login = () => {
   }, [token, from, navigate])
 
   if (loading || gLoading) {
-    return <button className="btn loading">loading</button>
+    return <Loader></Loader>
   }
   if (error || gError) {
     signinError = <p className='text-red-500 text-sm'>{error?.message || gError?.message}</p>

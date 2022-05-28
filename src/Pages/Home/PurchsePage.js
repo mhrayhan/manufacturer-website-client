@@ -8,18 +8,18 @@ import Swal from 'sweetalert2'
 const PurchsePage = () => {
   const [user] = useAuthState(auth);
 
-
   const [items, setItems] = useState([]);
 
   // console.log(items);
   const { id } = useParams();
   // console.log(items);
   useEffect(() => {
-    const url = `http://localhost:5000/product/${id}`
+    const url = `https://pure-falls-34835.herokuapp.com/product/${id}`
     fetch(url)
       .then(res => res.json())
       .then(data => setItems(data))
   }, [id])
+
 
 
   const handleSubmit = event => {
@@ -34,14 +34,14 @@ const PurchsePage = () => {
     // const minimumOrder = parseInt(items.minorder)
     // const availableQty = parseInt(items.available)
 
-    if (quantity >= items.minorder) {
+    if (quantity < items.minorder) {
       return Swal.fire(
         'Error',
         `Please Order more than ${items.minorder}`,
         'error'
       )
     }
-    if (quantity <= items.available) {
+    if (quantity > items.available) {
       return Swal.fire(
         'Error',
         `Please Order less than ${items.available}`,
@@ -61,7 +61,7 @@ const PurchsePage = () => {
       address: address
     }
 
-    const url = 'http://localhost:5000/purchase/'
+    const url = 'https://pure-falls-34835.herokuapp.com/purchase/'
     fetch(url, {
       method: 'POST',
       headers: {
@@ -86,7 +86,7 @@ const PurchsePage = () => {
       <div className='flex h-screen justify-center items-center'>
         <div className="card w-96 mx-auto bg-base-100 shadow-xl">
           <div className="card-body">
-            <h2 className="text-xl text-center font-bold">Purchase</h2>
+            <h2 className="text-2xl text-center font-semibold">Purchase</h2>
             <form onSubmit={handleSubmit}>
 
               <div className="form-control w-full max-w-xs">
@@ -96,20 +96,24 @@ const PurchsePage = () => {
                 <input type="text" readOnly name='itemName' value={items?.name}
                   className="input input-sm input-info  input-bordered w-full max-w-xs" />
               </div>
-              <div className="form-control mb-2 w-full max-w-xs">
+              <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Price</span>
                 </label>
                 <input type="number" readOnly name='price' value={items?.price}
                   className="input input-sm input-info  input-bordered w-full max-w-xs" />
               </div>
-
-              <div className='flex pb-2 '><span className='bg-green-500 text-white font-semi-bold px-2 p-[2px] rounded-md'>Stock: {items.available}</span><span className='bg-orange-600 text-white font-semi-bold px-2  p-[2px] rounded-md'>Minimum Order: {items.minorder}</span>
-              </div>
-
               <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Order Quantity</span>
+                </label>
                 <input type="number" name='quantity' placeholder='Order Quantity' className="input input-sm input-info  input-bordered w-full max-w-xs" />
               </div>
+
+              <div className='flex pt-4 '><span className='bg-green-500 text-white font-semi-bold px-2 p-[2px] rounded-md'>Stock: {items.available}</span><span className='bg-orange-600 text-white font-semi-bold px-2  p-[2px] rounded-md'>Minimum Order: {items.minorder}</span>
+              </div>
+
+
 
               <div className="form-control w-full max-w-xs">
                 <label className="label">
@@ -118,6 +122,7 @@ const PurchsePage = () => {
                 <input type="text" readOnly name='userName' value={user?.displayName}
                   className="input input-sm input-info  w-full max-w-xs" />
               </div>
+
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -125,15 +130,25 @@ const PurchsePage = () => {
                 <input type="text" readOnly name='userEmail' value={user?.email}
                   className="input input-sm input-info input-bordered w-full max-w-xs" />
               </div>
-              <div className="form-control my-2 w-full max-w-xs">
+
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Phone</span>
+                </label>
                 <input type="number" name='phone' placeholder='Your Phone'
                   className="input input-sm input-info  input-bordered w-full max-w-xs" />
               </div>
+
               <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Address</span>
+                </label>
                 <input type="text" name='address' placeholder='Your Address'
                   className="input input-sm input-info  input-bordered w-full max-w-xs" />
               </div>
+
               <input className='btn w-full max-w-xs my-4 btn-outline btn-success' type="submit" value='Place order' />
+
             </form>
           </div>
         </div>

@@ -6,6 +6,7 @@ import login from '../../assets/images/login2.jpg'
 import auth from '../../firebase.init';
 import google from '../../assets/images/google.png'
 import useToken from '../../hooks/useToken';
+import Loader from '../Shared/Loader';
 
 const Register = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -28,7 +29,7 @@ const Register = () => {
   let signinError;
 
   if (loading || gLoading || updating) {
-    return <button className="btn loading">loading</button>
+    return <Loader></Loader>
   }
   if (error || gError || updateError) {
     signinError = <p className='text-red-500 text-sm'>{error?.message || gError?.message}</p>

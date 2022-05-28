@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 const UsersData = ({ user, index, refetch }) => {
   const { email, role } = user;
   const makeAdmin = () => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
+    fetch(`https://pure-falls-34835.herokuapp.com/user/admin/${email}`, {
       method: 'PUT',
       headers: {
         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -32,7 +32,7 @@ const UsersData = ({ user, index, refetch }) => {
       })
   }
   return (
-    <tr className='text-center hover'>
+    <tr className='text-center'>
       <th>{index + 1}</th>
       <td>{email}</td>
       <td>{role !== 'admin' ? <button onClick={makeAdmin} className="btn btn-xs">Make Admin</button> : <button className='btn btn-xs bg-green-600 text-white'>admin</button>}</td>
