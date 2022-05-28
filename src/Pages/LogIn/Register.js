@@ -45,7 +45,7 @@ const Register = () => {
     await updateProfile({ displayName: data.name });
   }
   return (
-    <div className='flex w-[1200px] mx-auto'>
+    <div className='flex lg:w-[1200px] mx-auto'>
       <div>
         <img className='hidden lg:block' width={700} src={login} alt="" />
       </div>

@@ -7,7 +7,7 @@ const Banner = () => {
 
   return (
     <div className=''>
-      <div id='banner-background' className="hero lg:py-32 " >
+      <div id='banner-background' className="hero py-10 lg:py-32 " >
         <div className="hero-content  w-[95%] p-0 justify-between items-start flex-col lg:flex-row-reverse">
           <div>
             <img src={bannerImg} className="w-full rounded-lg" alt='' />
