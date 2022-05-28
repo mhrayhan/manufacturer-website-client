@@ -107,7 +107,7 @@ const PurchsePage = () => {
                 <label className="label">
                   <span className="label-text">Order Quantity</span>
                 </label>
-                <input type="number" name='quantity' placeholder='Order Quantity' className="input input-sm input-info  input-bordered w-full max-w-xs" />
+                <input type="number" name='quantity' placeholder='Order Quantity' className="input input-sm input-info  input-bordered w-full max-w-xs" required />
               </div>
 
               <div className='flex pt-4 '><span className='bg-green-500 text-white font-semi-bold px-2 p-[2px] rounded-md'>Stock: {items.available}</span><span className='bg-orange-600 text-white font-semi-bold px-2  p-[2px] rounded-md'>Minimum Order: {items.minorder}</span>
@@ -136,7 +136,7 @@ const PurchsePage = () => {
                   <span className="label-text">Phone</span>
                 </label>
                 <input type="number" name='phone' placeholder='Your Phone'
-                  className="input input-sm input-info  input-bordered w-full max-w-xs" />
+                  className="input input-sm input-info  input-bordered w-full max-w-xs" required />
               </div>
 
               <div className="form-control w-full max-w-xs">
@@ -144,7 +144,7 @@ const PurchsePage = () => {
                   <span className="label-text">Address</span>
                 </label>
                 <input type="text" name='address' placeholder='Your Address'
-                  className="input input-sm input-info  input-bordered w-full max-w-xs" />
+                  className="input input-sm input-info  input-bordered w-full max-w-xs" required />
               </div>
 
               <input className='btn w-full max-w-xs my-4 btn-outline btn-success' type="submit" value='Place order' />
